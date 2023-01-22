@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="card shadow mt-4 flex-row mb-3">
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Montant</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for panier in paniers %}
+                    <tr>
+                    <th scope="row">{% if panier.menu is not null %}{{panier.menu.nom}}{% else %}{{panier.burger.nom}}{% endif %}</th>
+                    <td><p class="card-text" data-montant={{panier.montant}}><button class="btn btn-secondary" id="btnMoins" >-</button><span id="nb" >1</span><button class="btn btn-secondary" id="btnPlus">+</button></p></td>
+                    <td>{{panier.montant}} FCFA</td>
+                    <td><a class="btn btn-danger" id="btnSupprmier" href="{{path('app_c_supprimer_panier',{'idC':panier.id})}}">Supprimer</a></td>
+                    </tr>  
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    <div class="badge badge-secondary " style="font-size: 22pt;">{{montant}} FCFA
+    </div>
+    <a class="btn btn-danger" id="btnSupprmierAll" href="{{path('app_c_vider_panier')}}">Annuler</a>
+    <a class="btn btn-success" id="btn-commander" href="#">Commander</a>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+{% block javascripts %}
+     {{parent()}}
+
+
+         <script>
+
+         const ps = document.querySelectorAll('.card-text');
+            const btnCommander=document.querySelector('#btn-commander');
+            var badge = document.querySelector('.badge');
+            var x=badge.textContent.split(' ')
+            var montant=parseInt(x[0])
+         for(let p of ps) {
+            let btnPlus = p.querySelector('#btnPlus');
+            let btnMoins = p.querySelector('#btnMoins');
+            let nb = p.querySelector('#nb');
+            let cpt = parseInt(nb.innerText)
+            
+            let montantAr=p.getAttribute('data-montant')
+            let montantAct=montantAr*cpt
+            btnPlus.addEventListener('click', function(){
+                 montantAct=montantAr*cpt
+
+                cpt = cpt + 1;
+                nb.innerHTML = cpt;
+
+                montant=(montant-montantAct)+montantAr*cpt
+                badge.innerHTML = montant + " FCFA"
+            });
+            btnMoins.addEventListener('click', function(){
+            if(cpt!=1){
+                 montantAct=montantAr*cpt
+
+                cpt = cpt - 1;
+                nb.innerHTML = cpt;
+
+                montant=(montant-montantAct)+montantAr*cpt
+                badge.innerHTML = montant + " FCFA"
+            }
+             });
+
+         }
+
+
+
+         btnCommander.addEventListener('click', function(){
+            let panier =[]
+            panier = {{ paniers | json_encode}} 
+
+            if(panier.length!=0){
+                let qtes=[]
+                const nb = document.querySelectorAll('#nb').forEach(function(p){
+                qtes.push(p.textContent)})
+                btnCommander.setAttribute('href','/c/panier/commander/'+qtes)
+            }
+
+           
+         });  
+            
+        </script>
+         
+
+     {% endblock %}

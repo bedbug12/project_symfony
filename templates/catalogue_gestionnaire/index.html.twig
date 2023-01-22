@@ -1,0 +1,271 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="container">
+
+<div class="card shadow mt-4 flex-row row">
+   
+   
+        {% for burger in burgers %}
+            
+        <div class="card m-3" style="width: 12rem;" >
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" class="card-img-top" alt="Burger">
+            <div class="card-body text-white" style="background-color: #fa9d12">
+                <h5 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">{{burger.nom}}</h5>
+                 <p class="card-text" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px; width: 6rem;">{{burger.prix}} FCFA</p>
+                 <div class="card flex-sm-row">
+                  <a href="#" class="btn btn-secondary btn-burger" style="width: 6rem; height: 2rem; font-size: 9pt;" data-toggle="modal" data-target="#myModal" data-type="typeBurger" data-id={{burger.id}} data-nom={{burger.nom|replace({' ' : ''})}} data-prix={{burger.prix}} >Modifier</a>
+                   <a href="{{path('app_g_catalogue_delArticleP_gestionnaire',{'idAr':burger.id})}}" class="btn btn-danger" style="width: 6rem; height: 2rem; font-size: 9pt;" >Archiver</a>
+                 </div>
+
+            </div>
+        </div>
+        {% endfor %}   
+
+        <div class="card m-3" id="btn-form" style="width: 12rem;"  role="button" data-type="typeBurger" data-toggle="modal" data-target="#myModal">
+            <img src="https://media.istockphoto.com/id/95700542/photo/3d-image-of-an-orange-plus-sign-on-white-background.jpg?s=1024x1024&w=is&k=20&c=GCi5Ava8z39LIdbcE5qvtKCCHhJGVqGAwJFo1DDG6Rk=" class="card-img-top" alt="Burger">
+            <div class="card-body text-white" style="background-color: #fa9d12">
+                <h5 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">Nouveau Burger</h5>
+            </div>
+        </div>
+
+</div>
+
+
+<div class="card shadow mt-4 flex-row row" id="cardBoisson">
+
+                            {% for boisson in boissons %}
+
+                            <div class="card m-3" style="width: 10rem;" >
+                                <img src="https://images.unsplash.com/photo-1594971475674-6a97f8fe8c2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29jYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Burger" style="width: 9.9rem; height: 7rem;">
+                                <div class="card-body text-white" style="background-color: #fa9d12">
+                                    <h6 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">{{boisson.nom}}</h6>
+                                    <p class="card-text" style="background-color: #aa6806c4; border-radius: 4px; padding: 1px; padding-left: 4px; width: 6rem; font-size: 8pt;">{{boisson.prix}} FCFA</p>
+                                  <div class="card flex-sm-row">
+                                    <a href="#" class="btn btn-secondary btn-boisson" style="width: 3.7rem; height: 1.8rem; font-size: 7pt;" data-toggle="modal" data-target="#myModal" data-type="typeBoisson" data-id={{boisson.id}} data-nom={{boisson.nom|replace({' ' : ''})}} data-prix={{boisson.prix}} >Modifier</a>
+                                     <a href="{{path('app_g_catalogue_delArticleC_gestionnaire',{'idAr':boisson.id})}}" class="btn btn-danger" style="width: 3.7rem; height: 1.8rem; font-size: 7pt;" >Archiver</a>
+                                  </div>
+                            </div>
+                            </div>
+
+                            {% endfor %}
+
+
+                             <div class="card m-3" id="btn-form" style="width: 10rem;" role="button" data-type="typeBoisson" data-toggle="modal" data-target="#myModal">
+            <img src="https://media.istockphoto.com/id/95700542/photo/3d-image-of-an-orange-plus-sign-on-white-background.jpg?s=1024x1024&w=is&k=20&c=GCi5Ava8z39LIdbcE5qvtKCCHhJGVqGAwJFo1DDG6Rk=" class="card-img-top" alt="Burger">
+            <div class="card-body text-white" style="background-color: #fa9d12">
+                <h5 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">Ajouter Boisson</h5>
+            </div>
+        </div>
+
+                            </div>
+
+
+
+ <div class="card shadow mt-4 flex-row row" id="cardFrite">
+                            {% for frite in frites %}
+                            <div class="card m-3" style="width: 10rem;" >
+                                <img src="https://media.istockphoto.com/id/618214356/fr/photo/panier-de-c%C3%A9l%C3%A8bres-fast-food-fran%C3%A7ais-frites.jpg?b=1&s=170667a&w=0&k=20&c=Vzpg5-r-nUcErw2uAbNj-Rlb4POYNXRIXKFRav_jz6E=" class="card-img-top" alt="Burger" style="width: 9.9rem; height: 7rem;">
+                                <div class="card-body text-white" style="background-color: #fa9d12">
+                                    <h6 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">{{frite.nom}}</h6>
+                                    <p class="card-text" style="background-color: #aa6806c4; border-radius: 4px; padding: 1px; padding-left: 4px; width: 6rem; font-size: 8pt;">{{frite.prix}} FCFA</p>
+                                    <div class="card flex-sm-row">
+                                                    <a href="#" class="btn btn-secondary btn-frite" style="width: 3.7rem; height: 1.8rem; font-size: 7pt;" data-toggle="modal" data-target="#myModal" data-type="typeFrite"  data-id={{frite.id}} data-nom={{frite.nom|replace({' ' : ''})}} data-prix={{frite.prix}} >Modifier</a>
+                                                    <a href="{{path('app_g_catalogue_delArticleC_gestionnaire',{'idAr':frite.id})}}" class="btn btn-danger" style="width: 3.7rem; height: 1.8rem; font-size: 7pt;" >Archiver</a>
+                                                    </div>                               
+                 
+                             </div>
+                            </div>
+                            {% endfor %}
+
+
+                             <div class="card m-3" id="btn-form" style="width: 10rem;" role="button" data-type="typeFrite" data-toggle="modal" data-target="#myModal">
+            <img src="https://media.istockphoto.com/id/95700542/photo/3d-image-of-an-orange-plus-sign-on-white-background.jpg?s=1024x1024&w=is&k=20&c=GCi5Ava8z39LIdbcE5qvtKCCHhJGVqGAwJFo1DDG6Rk=" class="card-img-top" alt="Burger">
+            <div class="card-body text-white" style="background-color: #fa9d12">
+                <h5 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">Ajouter Frites</h5>
+            </div>
+        </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Formulaire d'ajout</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+
+
+                        {{form_start(burgerForm)}}
+                        <div class="modal-body"> 
+                            {{form(burgerForm)}}
+                             <input class="btn btn-dark" id="" type="submit" value="Enregistrer">
+                        </div>
+                      
+
+                             
+                       
+                        {{form_end(burgerForm)}}
+                    </div>
+                </div>
+</div>
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+ {% block javascripts %}
+     {{parent()}}
+
+
+         <script>
+
+
+            const btnForm=document.querySelectorAll("#btn-form")
+            for(let btn of btnForm){
+                btn.addEventListener("click", () => {
+                    let nom=document.querySelector('#burger_nom')
+                    let prix=document.querySelector('#burger_prix')
+                    nom.setAttribute('value','')
+                    prix.setAttribute('value','')
+
+                    let typeAr=btn.getAttribute("data-type")
+                    const form=document.querySelector("form") 
+                    form.setAttribute("action","/g/catalogue/gestionnaire/"+typeAr)
+                     })
+                    }
+                    
+
+
+
+
+
+
+
+
+           const btnsFrite=document.querySelectorAll(".btn-frite")
+            const btnsBoisson=document.querySelectorAll(".btn-boisson")
+            const btnsBurger =document.querySelectorAll(".btn-burger") 
+            var burgerId=null;
+            var friteId;
+            var boissonId=null;
+            const btnCommande=document.querySelector("#btnCommande")
+
+
+            for(let btn of btnsFrite){
+                btn.addEventListener("click", () => {
+                    let idAr=btn.getAttribute("data-id")
+                    let dataNom=btn.getAttribute('data-nom')
+                    let dataPrix=btn.getAttribute('data-prix')
+                    let typeAr=btn.getAttribute("data-type")
+                    const form=document.querySelector("form")
+                    form.setAttribute("action","/g/catalogue/gestionnaire/modifier/"+typeAr+"/"+idAr)
+                    let nom=document.querySelector('#burger_nom')
+                    let prix=document.querySelector('#burger_prix')
+                    nom.setAttribute('value',dataNom)
+                    prix.setAttribute('value',dataPrix)
+                    
+                    }) } 
+
+            for(let btn of btnsBoisson){
+                btn.addEventListener("click", () => {
+                    let idAr=btn.getAttribute("data-id")
+                    let dataNom=btn.getAttribute('data-nom')
+                    let dataPrix=btn.getAttribute('data-prix')
+                    let typeAr=btn.getAttribute("data-type")
+                    const form=document.querySelector("form")
+                    form.setAttribute("action","/g/catalogue/gestionnaire/modifier/"+typeAr+"/"+idAr)
+                    let nom=document.querySelector('#burger_nom')
+                    let prix=document.querySelector('#burger_prix')
+                    nom.setAttribute('value',dataNom)
+                    prix.setAttribute('value',dataPrix)
+                    }) } 
+
+            for(let btn of btnsBurger){
+                btn.addEventListener("click", () => {
+                    let idAr=btn.getAttribute("data-id")
+                    let dataNom=btn.getAttribute('data-nom')
+                    let dataPrix=btn.getAttribute('data-prix')
+                    let typeAr=btn.getAttribute("data-type")
+                    const form=document.querySelector("form")
+                    form.setAttribute("action","/g/catalogue/gestionnaire/modifier/"+typeAr+"/"+idAr)
+                    let nom=document.querySelector('#burger_nom')
+                    let prix=document.querySelector('#burger_prix')
+                    nom.setAttribute('value',dataNom)
+                    prix.setAttribute('value',dataPrix)
+                }) }  
+
+            
+
+
+{# 
+          const btnFrites=document.querySelectorAll('.btn-secondary');
+            const btnBoisson=document.getElementById('boisson');
+            var  btnPlus=document.createElement("button")
+
+                btnPlus.setAttribute("class","btn btn-primary")
+                btnPlus.setAttribute("id","btnPlus")
+
+                const btnMoin=document.createElement("button")
+                btnMoins.setAttribute("class","btn btn-primary")
+                btnMoins.setAttribute("id","btnMoins")
+
+                const p=document.createElement("p")
+                const span=document.createElement("span")
+                span.setAttribute("id","nb")
+                span.textContent="0"
+                p.appendChild(btnMoin)
+                p.appendChild(span)
+                p.appendChild(btnPlus) 
+                var cardFrite=document.getElementById('cardFrite')
+              for(let btnFrite of btnFrites){
+                    btnFrite.addEventListener('click',function(){
+                                    let friteId=btnFrite.getAttribute('data-id');
+                                    cardFrite.appendChild(p)
+                                   // cardFrite.innerHTML= p
+                
+                                })
+              }
+           
+             btnBoisson.addEventListener('click',function(){
+                boissonId=btnBoisson.getAttribute('data-id');
+            })   #}
+
+        {#       const btnsDel=document.querySelectorAll(".btn-secondary")
+        const btnModalDelAg=document.querySelector("#btnCommande")
+        for(let btn of btnsDel){
+            btn.addEventListener("click", () => {
+                let idAg=btn.getAttribute("data-id")
+                alert("ok")
+                btnModalDelAg.setAttribute("href","/c/catalogue/ajouterArticle/"+burgerId+"/"+friteId+"/"+boissonId)
+                
+                }) #}
+                
+        
+         
+        </script>
+         
+
+     {% endblock %}

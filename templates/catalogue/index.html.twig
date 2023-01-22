@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="container">
+
+<div class="card shadow mt-4 flex-row row">
+   
+       
+        {% for burger in burgers %}
+            
+        <div class="card m-3" style="width: 14rem;">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" class="card-img-top" alt="Burger">
+            <div class="card-body text-white" style="background-color: #fa9d12">
+                <h5 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">{{burger.nom}}</h5>
+                 <p class="card-text" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px; width: 6rem;">{{burger.prix}} FCFA</p>
+                <a href="#" class="btn btn-secondary btn-burger" data-toggle="modal" data-target="#myModal"  data-id={{burger.id}} nom={{burger.nom|replace({' ' : ''})}} data-prix={{burger.prix}} >Ajouter</a>
+            </div>
+        </div>
+
+        {% endfor %}
+        
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Complements</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                         <div class="detail row mb-5" >
+                         <div class="img col-4" style="width: 9rem;">
+                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" class="card-img-top" alt="Burger" style="width: 9rem; height: 9rem;">
+                         </div>
+                         <div class="description col-8" style="padding-top: 15px;">
+                                <p style="font-size: 8pt;" id="nom">Nom: Burger Simple </p>
+                               <p style="font-size: 8pt;" id="prix">Prix: 1500 FCFA</p>
+                               <p style="font-size: 8pt;">Description: lorem ipseum burgeer lorem ipseum burgeer lorem ipseum burgeer lorem ipseum burgeer lorem ipseum burgeer lorem ipseum burgeer </p>
+
+                         </div>
+                         </div>
+                            <div class="card shadow mt-4 flex-row row" id="cardFrite">
+                            {% for frite in frites %}
+                            <div class="card" style="width: 10rem;" >
+                                <img src="https://media.istockphoto.com/id/618214356/fr/photo/panier-de-c%C3%A9l%C3%A8bres-fast-food-fran%C3%A7ais-frites.jpg?b=1&s=170667a&w=0&k=20&c=Vzpg5-r-nUcErw2uAbNj-Rlb4POYNXRIXKFRav_jz6E=" class="card-img-top" alt="Burger" style="width: 9.9rem; height: 7rem;">
+                                <div class="card-body text-white" style="background-color: #fa9d12">
+                                    <h6 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">{{frite.nom}}</h6>
+                                    <p class="card-text" style="background-color: #aa6806c4; border-radius: 4px; padding: 1px; padding-left: 4px; width: 6rem; font-size: 8pt;">{{frite.prix}} FCFA</p>
+                                    <a href="#" class="btn btn-secondary btn-frite" style="width: 3.5rem; height: 1.5rem; font-size: 7pt;" data-id={{frite.id}}>Ajouter</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            </div>
+                            
+
+
+
+                            <div class="container">
+                            <div class="card shadow mt-4 flex-row row" id="cardBoisson">
+                            {% for boisson in boissons %}
+                            <div class="card" style="width: 10rem;" >
+                                <img src="https://images.unsplash.com/photo-1594971475674-6a97f8fe8c2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29jYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Burger" style="width: 9.9rem; height: 7rem;">
+                                <div class="card-body text-white" style="background-color: #fa9d12">
+                                    <h6 class="card-title" style="background-color: #aa6806c4; border-radius: 4px; padding: 4px; padding-left: 4px;">{{boisson.nom}}</h6>
+                                    <p class="card-text" style="background-color: #aa6806c4; border-radius: 4px; padding: 1px; padding-left: 4px; width: 6rem; font-size: 8pt;">{{boisson.prix}} FCFA</p>
+                                    {# <a href="#" class="btn btn-secondary" style="width: 3.5rem; height: 1.5rem; font-size: 7pt;" data-id={{boisson.id}}>Ajouter</a> #}
+                                    <button  class="btn btn-secondary btn-boisson" style="width: 3.5rem; height: 1.5rem; font-size: 7pt;" data-id={{boisson.id}}>Ajouter</button>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            </div>
+                            </div>
+
+
+
+                        
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-dark" id="btnCommande" href="#">Ajouter</a>
+                        </div>
+                    </div>
+                </div>
+</div>
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+ {% block javascripts %}
+     {{parent()}}
+
+
+         <script>
+
+           const btnsFrite=document.querySelectorAll(".btn-frite")
+            const btnsBoisson=document.querySelectorAll(".btn-boisson")
+            const btnsBurger =document.querySelectorAll(".btn-burger") 
+            var burgerId=null;
+            var friteId;
+            var boissonId=null;
+            const btnCommande=document.querySelector("#btnCommande")
+
+
+            for(let btn of btnsFrite){
+                btn.addEventListener("click", () => {
+                    friteId=btn.getAttribute("data-id")
+                    alert("vous avez pris des frites")
+                    btnCommande.setAttribute("href","/c/catalogue/ajouterArticle/"+burgerId+"/"+friteId+"/"+boissonId)}) } 
+
+            for(let btn of btnsBoisson){
+                btn.addEventListener("click", () => {
+                    boissonId=btn.getAttribute("data-id")
+                     alert("vous avez pris des un boisson")
+                    btnCommande.setAttribute("href","/c/catalogue/ajouterArticle/"+burgerId+"/"+friteId+"/"+boissonId)}) } 
+
+            for(let btn of btnsBurger){
+                btn.addEventListener("click", () => {
+                let nom=document.querySelector("#nom")
+                let prix=document.querySelector("#prix")
+                let dataNom=btn.getAttribute('nom')
+                let dataPrix=btn.getAttribute('data-prix')
+                nom.innerHTML= "Nom: "+dataNom
+                prix.innerHTML="Prix: "+dataPrix
+                    burgerId=btn.getAttribute("data-id")
+                    btnCommande.setAttribute("href","/c/catalogue/ajouterArticle/"+burgerId+"/"+friteId+"/"+boissonId)}) } 
+
+            
+
+
+{# 
+          const btnFrites=document.querySelectorAll('.btn-secondary');
+            const btnBoisson=document.getElementById('boisson');
+            var  btnPlus=document.createElement("button")
+
+                btnPlus.setAttribute("class","btn btn-primary")
+                btnPlus.setAttribute("id","btnPlus")
+
+                const btnMoin=document.createElement("button")
+                btnMoins.setAttribute("class","btn btn-primary")
+                btnMoins.setAttribute("id","btnMoins")
+
+                const p=document.createElement("p")
+                const span=document.createElement("span")
+                span.setAttribute("id","nb")
+                span.textContent="0"
+                p.appendChild(btnMoin)
+                p.appendChild(span)
+                p.appendChild(btnPlus) 
+                var cardFrite=document.getElementById('cardFrite')
+              for(let btnFrite of btnFrites){
+                    btnFrite.addEventListener('click',function(){
+                                    let friteId=btnFrite.getAttribute('data-id');
+                                    cardFrite.appendChild(p)
+                                   // cardFrite.innerHTML= p
+                
+                                })
+              }
+           
+             btnBoisson.addEventListener('click',function(){
+                boissonId=btnBoisson.getAttribute('data-id');
+            })   #}
+
+        {#       const btnsDel=document.querySelectorAll(".btn-secondary")
+        const btnModalDelAg=document.querySelector("#btnCommande")
+        for(let btn of btnsDel){
+            btn.addEventListener("click", () => {
+                let idAg=btn.getAttribute("data-id")
+                alert("ok")
+                btnModalDelAg.setAttribute("href","/c/catalogue/ajouterArticle/"+burgerId+"/"+friteId+"/"+boissonId)
+                
+                }) #}
+                
+        
+         
+        </script>
+         
+
+     {% endblock %}

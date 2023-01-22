@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Commandes{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="card shadow mt-4 flex-row mb-3">
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Montant</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for commande in commandes %}
+                    <tr>
+                    <th scope="row">Commande n°{{commande.numero}}</th>
+                    <td>{{commande.dateCmdeAt|date("d-m-Y")}}</td>
+                    <td>{{commande.montant}} FCFA</td>
+                    <td><a class="btn btn-danger" id="btnSupprmier" href="#">Supprimer</a></td>
+                    </tr>  
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+{% endblock %}
